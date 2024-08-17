@@ -3,14 +3,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Corrected missing comma between parameters
                 git url: 'https://github.com/nsingh11144/cickd.git', branch: 'main'
             }
         }
         stage('Build') {
             steps {
                 script {
-                    // Build Docker image
                     dockerImage = docker.build("myapp:latest")
                 }
             }
@@ -18,7 +16,6 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    // Run tests inside the Docker container
                     dockerImage.inside {
                         sh 'npm test'
                     }
@@ -28,12 +25,10 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    // Push Docker image to a container registry (optional)
-                    docker.withRegistry('https://your-registry-url', 'your-credentials-id') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
                         dockerImage.push("latest")
                     }
                     
-                    // Deploy to Kubernetes using Helm
                     sh 'helm upgrade --install myapp ./helm/myapp'
                 }
             }
