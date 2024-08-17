@@ -9,7 +9,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build("myapp:latest")
+                    // Specify the Dockerfile explicitly
+                    dockerImage = docker.build("myapp:latest", "-f Dockerfile .")
                 }
             }
         }
