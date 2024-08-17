@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Corrected missing closing quote and syntax
-                git url: 'https://github.com/nsingh11144/cickd.git'
+                // Corrected missing comma between parameters
+                git url: 'https://github.com/nsingh11144/cickd.git', branch: 'main'
             }
         }
         stage('Build') {
