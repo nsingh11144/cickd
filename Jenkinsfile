@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://your-repository-url.git'
+        git 'https://github.com/nsingh11144/cickd.git
       }
     }
     stage('Build') {
